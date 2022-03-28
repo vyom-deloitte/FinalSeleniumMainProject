@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="C:\Users\vypant\FinalSeleniumMainProject">
+        <classes>
+            <class name="testcases.AddCustomerDetailsTest">
+                <methods>
+                    <include name="addcustomertest"/>
+                    <include name="homebtmtest"/>
+                    <include name="accountbtntest"/>
+                    <include name="customerbtntest"/>
+                    <include name="addDuplicateCustomerTest"/>
+                </methods>
+            </class>
+            <class name="testcases.BankManagerHomeTest">
+                <methods>
+                    <include name="addcustomertest"/>
+                    <include name="openaccounttest"/>
+                    <include name="customerstest"/>
+                    <include name="homebtmtest"/>
+                </methods>
+            </class>
+            <class name="testcases.LoginPageTest">
+                <methods>
+                    <include name="loginpagetitletest"/>
+                    <include name="managerlogintest"/>
+                    <include name="customerlogintest"/>
+                </methods>
+            </class>
+            <class name="testcases.OpenAccountTest">
+                <methods>
+                    <include name="clickCustomersTest"/>
+                    <include name="clickhomeTest"/>
+                    <include name="clickaddcustomerTest"/>
+                    <include name="userdropdownTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
