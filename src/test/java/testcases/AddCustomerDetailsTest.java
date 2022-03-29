@@ -1,14 +1,20 @@
 package testcases;
 
 import base.Base;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.*;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
-
+@Listeners(CustomListener.class)
 public class AddCustomerDetailsTest extends Base {
     AddCustomerDetails objaddcustomerdetails;
     LoginPage loginpage;
@@ -33,10 +39,37 @@ public class AddCustomerDetailsTest extends Base {
 
     }
     @Test(priority = 1)
-    public void addcustomertest() throws InterruptedException {
-        objaddcustomerdetails.addcustomerdata(prop.getProperty("firstname"), prop.getProperty("lastname"),prop.getProperty("postcode"));
-        Assert.assertEquals(objaddcustomerdetails.alertmsg,"Customer added successfully with customer id :6");
+    public void addcustomertest() throws InterruptedException, IOException {
+        File file = new File("C:\\Users\\vypant\\FinalSeleniumMainProject\\src\\main\\java\\data\\UserData.xlsx");
+        FileInputStream inputStream = new FileInputStream(file);
+        XSSFWorkbook wb=new XSSFWorkbook(inputStream);
+        XSSFSheet sheet=wb.getSheet("UserData");
+        int rows=sheet.getPhysicalNumberOfRows();
+        int cols=sheet.getRow(0).getLastCellNum();
+        String first=null;
+        String last=null;
+        String postcode=null;
+        for(int i=1;i<rows;i++) {
+            for (int j = 0; j < cols; j++) {
+                if (j == 0) {
+                    first= sheet.getRow(i).getCell(j).getStringCellValue();
+                }
+                if (j == 1) {
+                    last= sheet.getRow(i).getCell(j).getStringCellValue();
+                }
+                if(j==2){
+                    postcode=sheet.getRow(i).getCell(j).getStringCellValue();
+                }
 
+            }
+            System.out.println(first+" "+last+" "+postcode);
+            objaddcustomerdetails.addcustomerdata(first,last,postcode);
+            System.out.println(objaddcustomerdetails.alertmsg);
+            objaddcustomerdetails.customebtn();
+            customerspage.addCutomer();
+        }
+        wb.close();
+        inputStream.close();
     }
 
     @Test(priority =2)
