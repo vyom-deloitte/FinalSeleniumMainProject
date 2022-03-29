@@ -1,6 +1,7 @@
 package testcases;
 
 import base.Base;
+import org.apache.log4j.LogManager;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.testng.Assert;
@@ -8,12 +9,14 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import org.testng.log4testng.Logger;
 import pages.*;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
+
+
 @Listeners(CustomListener.class)
 public class AddCustomerDetailsTest extends Base {
     AddCustomerDetails objaddcustomerdetails;
@@ -21,6 +24,10 @@ public class AddCustomerDetailsTest extends Base {
     BankManagerHome bankmanagerhome;
     OpenAccountPage openaccount;
     CustomersPage customerspage;
+
+    //Adding Log4J
+   // private static Logger log= LogManager.getLogger(AddCustomerDetailsTest.class.getName());
+   //log.error("hello error");
     public AddCustomerDetailsTest(){
 
         super();
@@ -40,10 +47,10 @@ public class AddCustomerDetailsTest extends Base {
     }
     @Test(priority = 1)
     public void addcustomertest() throws InterruptedException, IOException {
-        File file = new File("C:\\Users\\vypant\\FinalSeleniumMainProject\\src\\main\\java\\data\\UserData.xlsx");
-        FileInputStream inputStream = new FileInputStream(file);
+       // File file = new File("C:\\Users\\vypant\\FinalSeleniumMainProject\\src\\main\\java\\data\\UserData.xlsx");
+        FileInputStream inputStream = new FileInputStream("C:\\Users\\vypant\\FinalSeleniumMainProject\\src\\main\\java\\data\\UserData.xlsx");
         XSSFWorkbook wb=new XSSFWorkbook(inputStream);
-        XSSFSheet sheet=wb.getSheet("UserData");
+        XSSFSheet sheet=wb.getSheet("Sheet1");
         int rows=sheet.getPhysicalNumberOfRows();
         int cols=sheet.getRow(0).getLastCellNum();
         String first=null;
@@ -63,6 +70,7 @@ public class AddCustomerDetailsTest extends Base {
 
             }
             System.out.println(first+" "+last+" "+postcode);
+           //log.error("test failed in reading");
             objaddcustomerdetails.addcustomerdata(first,last,postcode);
             System.out.println(objaddcustomerdetails.alertmsg);
             objaddcustomerdetails.customebtn();

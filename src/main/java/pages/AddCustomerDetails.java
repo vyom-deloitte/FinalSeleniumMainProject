@@ -36,22 +36,17 @@ public class AddCustomerDetails extends Base {
 
     }
     public void addcustomerdata(String fname, String ln, String pcode) throws InterruptedException {
-
-        driver.manage().timeouts().implicitlyWait(2000, TimeUnit.MILLISECONDS);
         firstname.sendKeys(fname);
-        driver.manage().timeouts().implicitlyWait(1000, TimeUnit.MILLISECONDS);
         lastname.sendKeys(ln);
-        driver.manage().timeouts().implicitlyWait(1000, TimeUnit.MILLISECONDS);
         postcode.sendKeys(pcode);
-        driver.manage().timeouts().implicitlyWait(1000, TimeUnit.MILLISECONDS);
         addcustomerbtn.click();
         Alert simplealert=driver.switchTo().alert();
         alertmsg= simplealert.getText();
-        driver.manage().timeouts().implicitlyWait(2000, TimeUnit.MILLISECONDS);
         simplealert.accept();
-        driver.manage().timeouts().implicitlyWait(2000, TimeUnit.MILLISECONDS);
+
     }
     public LoginPage clickhomebtn() throws InterruptedException {
+
         homebtn.click();
         driver.manage().timeouts().implicitlyWait(2000, TimeUnit.MILLISECONDS);
         return new LoginPage();
