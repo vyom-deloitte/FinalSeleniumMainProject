@@ -4,7 +4,6 @@
         <classes>
             <class name="testcases.BankManagerHomeTest">
                 <methods>
-                    <include name="addcustomertest"/>
                     <include name="openaccounttest"/>
                     <include name="customerstest"/>
                     <include name="homebtmtest"/>
