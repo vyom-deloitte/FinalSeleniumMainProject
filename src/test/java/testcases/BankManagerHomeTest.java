@@ -32,20 +32,22 @@ public class BankManagerHomeTest extends Base {
     @Test(priority = 1)
     public void addcustomertest() throws InterruptedException {
         objaddcustomerdetails1 = objbankmanagerhome.clickaddcustomer();
-
+        driver.manage().timeouts().implicitlyWait(2000, TimeUnit.MILLISECONDS);
     }
     @Test(priority =2)
     public void openaccounttest() throws InterruptedException {
         objopenacnt = objbankmanagerhome.clickonopenaccount();
-
+        driver.manage().timeouts().implicitlyWait(2000, TimeUnit.MILLISECONDS);
     }
     @Test(priority = 3)
     public void customerstest() throws InterruptedException {
         objcustomers=objbankmanagerhome.clickcustomers();
+        driver.manage().timeouts().implicitlyWait(2000, TimeUnit.MILLISECONDS);
     }
     @Test(priority =4)
     public void homebtmtest() throws InterruptedException {
         loginpage=objbankmanagerhome.clickhome();
+        driver.manage().timeouts().implicitlyWait(2000, TimeUnit.MILLISECONDS);
     }
 
     @AfterMethod
